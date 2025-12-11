@@ -1,12 +1,13 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
-
 export const getLicenseComparison = async (planA: string, planB: string): Promise<string> => {
+  const apiKey = process.env.API_KEY;
+  
   if (!apiKey) {
-    return "API Key is missing. Please configure your environment.";
+    return "API Key is missing. Please configure your environment variables.";
   }
+
+  const ai = new GoogleGenAI({ apiKey });
 
   const prompt = `
     Compare the Microsoft Licensing plans: "${planA}" and "${planB}".
@@ -30,16 +31,20 @@ export const getLicenseComparison = async (planA: string, planB: string): Promis
       contents: prompt,
     });
     return response.text || "No response generated.";
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error fetching comparison:", error);
-    return "Failed to generate comparison. Please try again later.";
+    return `Failed to generate comparison. Error details: ${error.message || error}`;
   }
 };
 
 export const askLicenseAdvisor = async (question: string, context?: string): Promise<string> => {
+  const apiKey = process.env.API_KEY;
+
   if (!apiKey) {
     return "API Key is missing.";
   }
+
+  const ai = new GoogleGenAI({ apiKey });
 
   const contextPrompt = context ? `Context: User is comparing ${context}.` : '';
   
@@ -62,8 +67,8 @@ export const askLicenseAdvisor = async (question: string, context?: string): Pro
       contents: prompt,
     });
     return response.text || "No response generated.";
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error asking advisor:", error);
-    return "Sorry, I couldn't process your request right now.";
+    return `Sorry, I couldn't process your request. Error: ${error.message || error}`;
   }
 };
