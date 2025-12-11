@@ -224,7 +224,7 @@ const App: React.FC = () => {
                                 <span className="font-bold text-slate-700">Need Desktop Apps?</span> Avoid Business Basic.
                             </li>
                             <li className="flex gap-3 text-xs text-slate-500">
-                                <span className="font-bold text-slate-700">Need >50GB Email?</span> Look at E3 or Exchange Plan 2.
+                                <span className="font-bold text-slate-700">Need &gt;50GB Email?</span> Look at E3 or Exchange Plan 2.
                             </li>
                             <li className="flex gap-3 text-xs text-slate-500">
                                 <span className="font-bold text-slate-700">Need Security?</span> Business Premium or E5.
