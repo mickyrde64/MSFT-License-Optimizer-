@@ -739,7 +739,7 @@ export const FeatureMatrix: React.FC = () => {
          <div className="flex items-center gap-1"><Plus className="w-3 h-3 text-blue-500" /> Add-on</div>
          <div className="flex items-center gap-1"><span className="font-serif">Δ</span> Azure/Usage</div>
          <div className="flex items-center gap-1"><span className="text-[10px] bg-slate-200 px-1 rounded">Text</span> Specific Entitlement</div>
-         <span className="ml-auto text-[10px] text-slate-400">Source: m365maps.com</span>
+         <span className="ml-auto text-[10px] text-slate-400"></span>
       </div>
     </div>
   );
