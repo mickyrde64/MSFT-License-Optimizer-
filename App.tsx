@@ -58,7 +58,8 @@ const App: React.FC = () => {
               Microsoft 365 & Office 365
             </div>
             <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
-                Optimize Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Microsft Licensing Costs</span>
+                Optimize Your<br className="hidden sm:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"> Microsoft Licensing Costs</span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Compare plans, calculate real-world costs, and find hidden savings with our AI-powered licensing engine.
