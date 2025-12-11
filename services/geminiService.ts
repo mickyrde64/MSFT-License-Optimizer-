@@ -1,7 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const getLicenseComparison = async (planA: string, planB: string): Promise<string> => {
-  const apiKey = process.env.API_KEY;
+  // Ensure we get the key and sanitize it (remove accidental quotes or whitespace)
+  const rawKey = process.env.API_KEY;
+  const apiKey = rawKey ? rawKey.replace(/["']/g, '').trim() : '';
   
   if (!apiKey) {
     return "API Key is missing. Please configure your environment variables.";
@@ -33,12 +35,17 @@ export const getLicenseComparison = async (planA: string, planB: string): Promis
     return response.text || "No response generated.";
   } catch (error: any) {
     console.error("Error fetching comparison:", error);
+    // Check for specific API Key errors to give better feedback
+    if (error.message?.includes('API key not valid') || error.status === 'INVALID_ARGUMENT' || error.error?.code === 400) {
+        return "Error: Invalid API Key. Please check your configuration and ensure you have a valid Gemini API key (should not contain quotes).";
+    }
     return `Failed to generate comparison. Error details: ${error.message || error}`;
   }
 };
 
 export const askLicenseAdvisor = async (question: string, context?: string): Promise<string> => {
-  const apiKey = process.env.API_KEY;
+  const rawKey = process.env.API_KEY;
+  const apiKey = rawKey ? rawKey.replace(/["']/g, '').trim() : '';
 
   if (!apiKey) {
     return "API Key is missing.";
@@ -69,6 +76,9 @@ export const askLicenseAdvisor = async (question: string, context?: string): Pro
     return response.text || "No response generated.";
   } catch (error: any) {
     console.error("Error asking advisor:", error);
+    if (error.message?.includes('API key not valid') || error.status === 'INVALID_ARGUMENT' || error.error?.code === 400) {
+        return "Error: Invalid API Key. Please check your configuration.";
+    }
     return `Sorry, I couldn't process your request. Error: ${error.message || error}`;
   }
 };
