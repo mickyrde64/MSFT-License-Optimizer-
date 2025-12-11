@@ -4,6 +4,7 @@ import { AiResponseState } from './types';
 import { ComparisonTable } from './components/ComparisonTable';
 import { AiAdvisor } from './components/AiAdvisor';
 import { LicenseCalculator } from './components/LicenseCalculator';
+import { FeatureMatrix } from './components/FeatureMatrix';
 import { getLicenseComparison } from './services/geminiService';
 import { LayoutGrid, ArrowRightLeft, Sparkles, Zap, ShieldAlert, CheckCircle2, ChevronDown } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -39,6 +40,7 @@ const App: React.FC = () => {
           </div>
           <nav className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
             <a href="#calculator" className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Calculator</a>
+            <a href="#matrix" className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Feature Matrix</a>
             <a href="#compare" className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Plan Comparison</a>
             <a href="#advisor" className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">AI Advisor</a>
           </nav>
@@ -70,8 +72,13 @@ const App: React.FC = () => {
         </div>
 
         {/* License Calculator Section (Moved to Top) */}
-        <div id="calculator" className="scroll-mt-28 mb-24">
+        <div id="calculator" className="scroll-mt-28 mb-16">
             <LicenseCalculator />
+        </div>
+
+        {/* Feature Matrix Section (Subside of Calculator) */}
+        <div id="matrix" className="scroll-mt-28 mb-24">
+            <FeatureMatrix />
         </div>
 
         {/* Comparison Section Header */}
